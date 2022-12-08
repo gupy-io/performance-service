@@ -30,7 +30,13 @@
 
 ```bash
 $ npm install
+$ ./migrations/run.sh 
 ```
+
+### Other dependencies
+docker
+docker-compose
+mysql-client
 
 ## Running the app
 
