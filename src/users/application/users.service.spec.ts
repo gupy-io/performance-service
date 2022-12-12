@@ -2,7 +2,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { User } from './user';
 import { UsersService } from './users.service';
-import { Repository } from 'typeorm';
+import { UsersRepository } from './users.repository';
 
 const userArray = [
   {
@@ -22,7 +22,7 @@ const oneUser = {
 
 describe('UserService', () => {
   let service: UsersService;
-  let repository: Repository<User>;
+  let repository: UsersRepository;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
@@ -32,7 +32,7 @@ describe('UserService', () => {
           provide: getRepositoryToken(User),
           useValue: {
             find: jest.fn().mockResolvedValue(userArray),
-            findOneBy: jest.fn().mockResolvedValue(oneUser),
+            findOneById: jest.fn().mockResolvedValue(oneUser),
             save: jest.fn().mockResolvedValue(oneUser),
             remove: jest.fn(),
             delete: jest.fn(),
@@ -42,7 +42,7 @@ describe('UserService', () => {
     }).compile();
 
     service = module.get<UsersService>(UsersService);
-    repository = module.get<Repository<User>>(getRepositoryToken(User));
+    repository = module.get<UsersRepository>(getRepositoryToken(User));
   });
 
   it('should be defined', () => {
@@ -74,9 +74,9 @@ describe('UserService', () => {
 
   describe('findOne()', () => {
     it('should get a single user', () => {
-      const repoSpy = jest.spyOn(repository, 'findOneBy');
+      const repoSpy = jest.spyOn(repository, 'findOneById');
       expect(service.findOne(1)).resolves.toEqual(oneUser);
-      expect(repoSpy).toBeCalledWith({ id: 1 });
+      expect(repoSpy).toBeCalledWith(1);
     });
   });
 
@@ -84,7 +84,7 @@ describe('UserService', () => {
     it('should call remove with the passed value', async () => {
       const removeSpy = jest.spyOn(repository, 'delete');
       const retVal = await service.remove('2');
-      expect(removeSpy).toBeCalledWith('2');
+      expect(removeSpy).toBeCalledWith(2);
       expect(retVal).toBeUndefined();
     });
   });
