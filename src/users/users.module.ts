@@ -4,7 +4,7 @@ import { UsersController } from './interface/users.controller';
 import { UsersService } from './application/users.service';
 import { UserSchema } from './infrastructure/user.schema';
 import { DatabaseUsersRepository } from './infrastructure/database.users.repository';
-import { UsersRepository } from './application/users.repository';
+import { UsersRepository } from './domain/users.repository';
 
 @Module({
   imports: [TypeOrmModule.forFeature([UserSchema])],

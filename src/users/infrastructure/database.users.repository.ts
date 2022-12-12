@@ -1,6 +1,6 @@
-import { UsersRepository } from '../application/users.repository';
+import { UsersRepository } from '../domain/users.repository';
 import { Injectable } from '@nestjs/common';
-import { User } from '../application/user';
+import { User } from '../domain/user';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
