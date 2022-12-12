@@ -1,8 +1,8 @@
 import { User } from './user';
 
-export interface UsersRepository {
-  save(user: User): Promise<User>;
-  find(): Promise<User[]>;
-  findOneById(id: number): Promise<User>;
-  delete(id: number): Promise<void>;
+export abstract class UsersRepository {
+  abstract save(user: User): Promise<User>;
+  abstract find(): Promise<User[]>;
+  abstract findOneById(id: number): Promise<User>;
+  abstract delete(id: number): Promise<void>;
 }

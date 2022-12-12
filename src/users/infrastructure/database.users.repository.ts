@@ -5,11 +5,13 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
 @Injectable()
-export class DatabaseUsersRepository implements UsersRepository {
+export class DatabaseUsersRepository extends UsersRepository {
   constructor(
     @InjectRepository(User)
     private readonly orm: Repository<User>,
-  ) {}
+  ) {
+    super();
+  }
   save(user: User): Promise<User> {
     return this.orm.save(user);
   }
