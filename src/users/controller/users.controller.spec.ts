@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { CreateUserDto } from '../application/dto/create-user.dto';
+import { CreateUserDto } from '../service/dto/create-user.dto';
 import { UsersController } from './users.controller';
-import { UsersService } from '../application/users.service';
+import { UsersService } from '../service/users.service';
 
 const createUserDto: CreateUserDto = {
   firstName: 'firstName #1',

@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { UsersService } from './users.service';
-import { UsersRepository } from '../domain/users.repository';
+import { UsersRepository } from './users.repository';
 
 const userArray = [
   {
